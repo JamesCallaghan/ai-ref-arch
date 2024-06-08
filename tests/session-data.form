@@ -1,0 +1,13 @@
+-----BOUNDARY
+Content-Disposition: form-data; name="input"
+
+Repeat the word "Hello" with no punctuation
+-----BOUNDARY
+Content-Disposition: form-data; name="mode"
+
+inference
+-----BOUNDARY
+Content-Disposition: form-data; name="type"
+
+text
+-----BOUNDARY--

@@ -1,0 +1,13 @@
+auth:
+  adminUser: admin
+  adminPassword: "${DEMO_PASSWORD}"
+httpRelativePath: "/auth/"
+ingress:
+  enabled: true
+  tls: true
+  hostname: ${INGRESS_IP}.nip.io
+  path: "/auth/"
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+proxy: edge

@@ -1,0 +1,39 @@
+global:
+  serverUrl: https://${INGRESS_IP}.nip.io
+envVariables:
+  LOG_LEVEL: debug
+  APP_URL: https://${INGRESS_IP}.nip.io
+  # Database
+  POSTGRES_HOST: helix-postgresql
+  POSTGRES_USER: helix
+  POSTGRES_PASSWORD: ${DEMO_PASSWORD}
+  POSTGRES_DATABASE: helix
+  # Runners
+  RUNNER_TOKEN: ${DEMO_PASSWORD}
+  # LLM providers
+  OPENAI_API_KEY: ""
+  TOGETHER_API_KEY: ""
+  # Keycloak location
+  KEYCLOAK_URL: http://keycloak/auth
+  # How Keycloak redirects the users on login, should be user facing
+  KEYCLOAK_FRONTEND_URL: https://${INGRESS_IP}.nip.io/auth/
+  KEYCLOAK_USER: "admin"
+  KEYCLOAK_PASSWORD: "${DEMO_PASSWORD}"
+  # Dashboard
+  ADMIN_USER_IDS: "all"
+  # Evals 
+  EVAL_USER_ID: ""
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "selfsigned"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+  hosts:
+    - host: ${INGRESS_IP}.nip.io
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+   - secretName: chart-example-tls
+     hosts:
+       - ${INGRESS_IP}.nip.io

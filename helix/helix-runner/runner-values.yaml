@@ -1,0 +1,20 @@
+# Specify how to connect to the Helix controlplane
+runner:
+  host: http://helix-helix-controlplane
+  models: "llama3:instruct,phi3:instruct"
+  token: ${DEMO_PASSWORD}
+  # Memory based on the available GPU memory. In this example
+  # 3090 has 24GB of memory
+  memory: 32GB
+  axolotl: "'false'"
+
+# How many runners do you want to run?
+replicaCount: 1
+
+# Select your GPU count
+resources:
+  limits:
+    nvidia.com/gpu: 1
+
+nodeSelector:
+  cloud.google.com/gke-nodepool: ${NODE_POOL_NAME}
